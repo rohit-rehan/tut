@@ -1,0 +1,45 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8" />		
+		<script type="text/javascript" src="svg.js"></script>
+		<script type="text/javascript" src="svg.path.js"></script>
+		<style type="text/css" media="screen">
+			ul { margin: 0; padding: 0; border-bottom: 1px solid #ccc; padding-bottom: 30px; }
+    		li { list-style-type: none; width: 160px; display: inline-block; margin: 10px; }
+    		h3 { margin: 0 0 10px 0; font-size: 1em; font-weight: 300; }
+			.paper { width: 1000px; height: 1000px; background-image: url('http://svgjs.com/test/images/grid.png'); }
+		</style>
+
+	</head>
+	<body>
+		<div class="paper">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<g id="animate"></g>
+		      	<path id="lineAB" d="M 300 50 l -250 000 l 0 60 A 10 10 0 0 1 50 150 A 10 10 0 0 1 50 110" stroke="white" stroke-width="3" fill="none" 
+					stroke-dasharray="4 4" style="z-index: 10"/>
+			</svg>
+		</div>
+		<script>
+			SVG(document.getElementById('animate'))
+				.path()
+				.attr({ 
+					fill: 'none',
+					stroke: '#000', 
+					'stroke-width': 2,
+					'style': 'z-index: 9'
+				})
+				.M(300,50)
+				.L(50,50)
+				.L(50,110)
+				.A(10,10,0,0,1,{x:50, y:150})
+				.A(10,10,0,0,1,{x:50, y:110})
+				.drawAnimated({
+					duration: 2000, 
+					easing: '=', 
+					delay: 0
+				});
+		</script>
+	</body>
+</html>
