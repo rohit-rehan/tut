@@ -15,11 +15,11 @@
 	</head>
 	<body>
 		<div class="paper">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<svg width="500px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 				<g id="animate"></g>
 	      	<path
 						id="lineAB"
-						d="M 300 50 l -250 000 l 0 60 A 10 10 0 0 1 50 150 A 10 10 0 0 1 50 110"
+						d="M 400 50 A 10 10 0 0 1 450 50 A 10 10 0 0 1 400 50 L 150 50 150 110 A 10 10 0 0 1 150 150 A 10 10 0 0 1 150 110"
 						stroke="white"
 						stroke-width="3"
 						fill="none"
@@ -32,15 +32,25 @@
 				.attr({
 					fill: 'none',
 					stroke: '#000',
-					'stroke-width': 2,
+					'stroke-width': 1,
 				})
-				.M(300,50)
-				.L(50,50)
-				.L(50,110)
-				.A(10,10,0,0,1,{x:50, y:150})
-				.A(10,10,0,0,1,{x:50, y:110})
+				.M(400, 50)
+				.A(10, 10, 0, 0, 1, {x: 450, y: 50})
+				.A(10, 10, 0, 0, 1, {x: 400, y: 50})
+				.L(150, 50, 150, 110)
+				.A(10, 10, 0, 0, 1, {x: 150, y: 150})
+				.A(10, 10, 0, 0, 1, {x: 150, y: 110})
+
+				//.M(500, 100)
+				//.A(10, 10, 0, 0, 1, {x: 250, y: 100})
+				//.A(10, 10, 0, 0, 1, {x: 500, y: 110})
+				//.M(300, 50)
+				//.L(50, 50)
+				//.L(50, 110)
+				//.A(10, 10, 0, 0, 1, {x: 50, y: 150})
+				//.A(10, 10, 0, 0, 1, {x: 50, y: 110})
 				.drawAnimated({
-					duration: 2000,
+					duration: 1000,
 					easing: '=',
 					delay: 0
 				});
