@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta charset="UTF-8" />		
+		<meta charset="UTF-8" />
 		<script type="text/javascript" src="svg.js"></script>
 		<script type="text/javascript" src="svg.path.js"></script>
 		<style type="text/css" media="screen">
@@ -17,18 +17,22 @@
 		<div class="paper">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 				<g id="animate"></g>
-		      	<path id="lineAB" d="M 300 50 l -250 000 l 0 60 A 10 10 0 0 1 50 150 A 10 10 0 0 1 50 110" stroke="white" stroke-width="3" fill="none" 
-					stroke-dasharray="4 4" style="z-index: 10"/>
+	      	<path
+						id="lineAB"
+						d="M 300 50 l -250 000 l 0 60 A 10 10 0 0 1 50 150 A 10 10 0 0 1 50 110"
+						stroke="white"
+						stroke-width="3"
+						fill="none"
+						stroke-dasharray="4 4" />
 			</svg>
 		</div>
 		<script>
 			SVG(document.getElementById('animate'))
 				.path()
-				.attr({ 
+				.attr({
 					fill: 'none',
-					stroke: '#000', 
+					stroke: '#000',
 					'stroke-width': 2,
-					'style': 'z-index: 9'
 				})
 				.M(300,50)
 				.L(50,50)
@@ -36,8 +40,8 @@
 				.A(10,10,0,0,1,{x:50, y:150})
 				.A(10,10,0,0,1,{x:50, y:110})
 				.drawAnimated({
-					duration: 2000, 
-					easing: '=', 
+					duration: 2000,
+					easing: '=',
 					delay: 0
 				});
 		</script>
