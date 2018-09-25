@@ -1,86 +1,103 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <style type="text/css">
-      #line{
-        width: 700px;
-        margin: 20px 0;
-        height: 300px;
-        background: #eee;
-      }
-      button {
-        margin: 20px 0 0 20px;
-      }
-    ​</style>
-  </head>
-  <body>
-  <script src = "https://d3js.org/d3.v4.min.js"></script>
+<meta charset = "UTF-8">
+   <head>
+      <title>SVG path line Generator</title>
+   </head>
 
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.5.0"></script>
-    <div id="path"></div>​
-    <script type="text/javascript">
-      var w = 500;
-      var h = 500;
-      var svg = d3.select("#path")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h)
-        .attr("id", "visualization")
-        .attr("xmlns", "http://www.w3.org/2000/svg");
+   <style>
+   </style>
 
-        //M 400 50 A 10 10 0 0 1 450 50 A 10 10 0 0 1 400 50 L 150 50 150 110 A 10 10 0 0 1 150 150 A 10 10 0 0 1 150 110
-        var path = d3.path();
-        path.moveTo(400,50);
-        path.arc(400, 50, 50, -Math.PI/2, Math.PI/2, treu)
+   <body>
+      <div id="line"></div>​
+<svg></svg>
+      <script src = "https://d3js.org/d3.v4.min.js"></script>
+      <script>
+      var svg = d3.select("svg")
+        .append("g")
+        .attr("transform", "translate(150,75)");
 
-    </script>
-    <div id="line"></div>​
-    <script type="text/javascript">
-      var w = 700;
-      var h = 300;
+      var arc = d3.arc()
+        .innerRadius(0)
+        .outerRadius(50);
 
-      var svg = d3.select("#line")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h)
-        .attr("id", "visualization")
-        .attr("xmlns", "http://www.w3.org/2000/svg");
+        var myString = arc({
+          startAngle: 0,
+          endAngle: (Math.PI)
+        }).split(/[A-Z]/);
+        var myString2 = arc({
+          startAngle: (-Math.PI),
+          endAngle: 0
+        }).split(/[A-Z]/);
 
-      var data = [10,9,8,9,8,1,1,1,1,1,1,1,1,1,1]
-      var x = d3.scale.linear().domain([0, 10]).range([0, 700]);
-      var y = d3.scale.linear().domain([0, 10]).range([10, 290]);
-      var line = d3.svg.line()
-        .interpolate("cardinal")
-        .x(function(d,i) {return x(i);})
-        .y(function(d) {return y(d);})
+      var sector = svg.append("path")
+        .attr("fill", "none")
+        .attr("stroke-width", 3)
+        .attr("stroke", "red")
+        .attr("d", "M" + myString[1] + "A" + myString[2]  + "A" + myString2[2])
+
+
+        const hypotenuseCoords = {
+  x1: hypotenuseCentre,
+  y1: parseFloat(state.hypotenuse.attr('y1')),
+  x2: xTo,
+  y2: dy
+};
+
+const angle = Math.atan2(hypotenuseCoords.y2 - hypotenuseCoords.y1, hypotenuseCoords.x2 - hypotenuseCoords.x1);
+
+const arc = d3.svg.arc()
+        .innerRadius(15)
+        .outerRadius(20)
+        .startAngle(Math.PI/2)
+        .endAngle(angle + Math.PI/2);
+
+state.innerAngle
+  .attr('d', arc)
+  .attr('transform', `translate(${hypotenuseCentre}, 0)`);
+/*
+    var w = 700;
+    var h = 300;
+         var data = [[0, 20], [50, 30], [100, 50], [200, 60], [300, 90]];
+         var lineGenerator = d3.line();
+         var pathString = lineGenerator(data);
+         var arc = d3.arc()
+            .startAngle(0)
+            .endAngle(180)
+          	.innerRadius(100)
+          	.outerRadius(105)
+          	.cornerRadius(4);
+
+        var svg = d3.select("#line")
+              .append("svg").attr("transform", "translate(150,75)")
+              .attr("width", w)
+              .attr("height", h)
+              .attr("id", "visualization")
+              .attr("xmlns", "http://www.w3.org/2000/svg");
 
       var path = svg.append("path")
-        .attr("d", line(data))
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", "2")
-        .attr("fill", "none");
+      .attr("d", arc)
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", "0")
+      .attr("fill", "none");
+/*
+    var totalLength = path.node().getTotalLength();
 
-      var totalLength = path.node().getTotalLength();
+    path
+      .attr("stroke-dasharray", totalLength + " " + totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+        .duration(2000)
+        //.ease("easeLinear")
+        .attr("endAngle", -Math.PI);
 
+    svg.on("click", function(){
       path
-        .attr("stroke-dasharray", totalLength + " " + totalLength)
-        .attr("stroke-dashoffset", totalLength)
         .transition()
-          .duration(2000)
-          .ease("linear")
-          .attr("stroke-dashoffset", 0);
-
-      svg.on("click", function(){
-        path
-          .transition()
-          .duration(2000)
-          .ease("linear")
-          .attr("stroke-dashoffset", totalLength);
-      })
-
-
-
-    </script>
-  </body>
+        .duration(2000)
+        //.ease("easeLinear")
+        .attr("stroke-dashoffset", totalLength);
+    })
+*/
+      </script>
+   </body>
 </html>

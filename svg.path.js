@@ -158,18 +158,23 @@
 		drawAnimated: function(options){
 			options = options || {};
 			options.duration = options.duration || '1000';
+			options.strokeWidth = options.strokeWidth || 2
 			options.easing = options.easing || '<>';
 			options.delay = options.delay || 0;
+			options.callback = options.callback || null;
 			
 			var length = this.length();
 
 			this.stroke({
-				width:         2,
+				width:         options.strokeWidth,
 				dasharray:     length + ' ' + length,
 				dashoffset:    length
 			});
 
 			var fx = this.animate(options.duration, options.easing, options.delay);
+			
+			if(options.callback)
+				fx.after(options.callback)
 
 			fx.stroke({
 				dashoffset: 0
